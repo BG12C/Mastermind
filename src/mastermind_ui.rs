@@ -38,7 +38,13 @@ impl MastermindUI {
             let rate_zahl = match trimmed_input.parse::<u16>() {
                 Ok(n) => {
                     if n >= 1000 && n <= 10000 {
-                        n
+                        if Aufgabenersteller::einmaliger_inhalt(&Aufgabenersteller::zerlege_zahl(n))
+                        {
+                            n
+                        } else {
+                            println!("Jede Zahl kann nur einmal vorkommen!");
+                            continue;
+                        }
                     } else {
                         println!("{trimmed_input} ist zu groß oder klein!");
                         continue;

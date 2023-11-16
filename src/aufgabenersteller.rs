@@ -21,16 +21,20 @@ impl Aufgabenersteller {
         }
     }
 
-    // TODO: implement
-    // pub fn zerlege_zahl(&self, zahl: u16) -> Vec<u8> {
-    //     let stringified_number = zahl.to_string();
-    //     let bytes = stringified_number.as_bytes();
-    //     let digits: Vec<u8> = bytes
-    //         .iter()
-    //         .map(|x| char::try_from(*x).unwrap().to_digit(10).unwrap_or(0) as u8)
-    //         .collect();
-    //     digits
-    // }
+    pub fn zerlege_zahl(zahl: u16) -> Vec<u8> {
+        let stringified_number = zahl.to_string();
+        let bytes = stringified_number.as_bytes();
+        let digits: Vec<u8> = bytes
+            .iter()
+            .map(|x| char::try_from(*x).unwrap().to_digit(10).unwrap_or(0) as u8)
+            .collect();
+        digits
+    }
+
+    pub fn einmaliger_inhalt(vec: &Vec<u8>) -> bool {
+        let set: HashSet<_> = vec.iter().cloned().collect();
+        set.len() == vec.len()
+    }
 
     pub fn bewerte_ratezahl(&self, ratezahl: u16) -> Versuch {
         let mut indirekte_treffer: u8 = 0;

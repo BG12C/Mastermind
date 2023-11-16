@@ -12,5 +12,5 @@ fn main() {
         mastermind.neues_spiel();
     }
 
-    println!("******************** Danke und Tschüss!!! ********************")
+    println!("******************** Danke und Tschüss!!! ********************");
 }

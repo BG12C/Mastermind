@@ -35,25 +35,21 @@ impl MastermindUI {
                 Spieler::rate_zahl(self.max_anzahl_versuche - self.spielbrett.anzahl_versuche);
             let trimmed_input = input.trim();
 
-            let rate_zahl = match trimmed_input.parse::<u16>() {
-                Ok(n) => {
-                    if n >= 1000 && n <= 10000 {
-                        if Aufgabenersteller::einmaliger_inhalt(&Aufgabenersteller::zerlege_zahl(n))
-                        {
-                            n
-                        } else {
-                            println!("Jede Zahl kann nur einmal vorkommen!");
-                            continue;
-                        }
+            let rate_zahl = if let Ok(n) = trimmed_input.parse::<u16>() {
+                if (1000..10000).contains(&n) {
+                    if Aufgabenersteller::einmaliger_inhalt(&Aufgabenersteller::zerlege_zahl(n)) {
+                        n
                     } else {
-                        println!("{trimmed_input} ist zu groß oder klein!");
+                        println!("Jede Zahl kann nur einmal vorkommen!");
                         continue;
                     }
-                }
-                Err(_) => {
-                    println!("'{trimmed_input}' ist keine gültige Zahl!");
+                } else {
+                    println!("{trimmed_input} ist zu groß oder klein!");
                     continue;
                 }
+            } else {
+                println!("'{trimmed_input}' ist keine gültige Zahl!");
+                continue;
             };
 
             let versuch = self.aufgabenersteller.bewerte_ratezahl(rate_zahl);
@@ -66,7 +62,7 @@ impl MastermindUI {
                 println!(
                     "Volltreffer!!! Sie haben die Zahl im {}. Versuch erraten.",
                     self.spielbrett.anzahl_versuche
-                )
+                );
             }
         }
 
@@ -76,14 +72,11 @@ impl MastermindUI {
             let mut buffer = String::new();
             io::stdin().read_line(&mut buffer).unwrap();
 
-            match buffer.trim().parse::<u8>() {
-                Ok(n) => {
-                    if n == 1 || n == 2 {
-                        return n;
-                    }
+            if let Ok(n) = buffer.trim().parse::<u8>() {
+                if n == 1 || n == 2 {
+                    return n;
                 }
-                Err(_) => {}
-            };
+            }
         }
     }
 }

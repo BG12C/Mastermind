@@ -3,15 +3,13 @@ use crate::versuch::Versuch;
 #[derive(Debug)]
 pub struct Spielbrett {
     pub anzahl_versuche: u8,
-    pub max_anzahl_versuche: u8,
     versuche: Vec<Versuch>,
 }
 
 impl Spielbrett {
-    pub fn new(max_anzahl_versuche: u8) -> Self {
+    pub fn new() -> Self {
         Self {
             anzahl_versuche: 0u8,
-            max_anzahl_versuche,
             versuche: vec![],
         }
     }

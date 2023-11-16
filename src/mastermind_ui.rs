@@ -17,7 +17,7 @@ impl MastermindUI {
         MastermindUI {
             max_anzahl_versuche: max_anzahl,
             aufgabenersteller: Aufgabenersteller::erzeuge_geheimzahl(),
-            spielbrett: Spielbrett::new(max_anzahl),
+            spielbrett: Spielbrett::new(),
         }
     }
 

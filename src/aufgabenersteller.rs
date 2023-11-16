@@ -26,13 +26,15 @@ impl Aufgabenersteller {
         let bytes = stringified_number.as_bytes();
         let digits: Vec<u8> = bytes
             .iter()
-            .map(|x| char::try_from(*x).unwrap().to_digit(10).unwrap_or(0) as u8)
+            .map(|x| {
+                u8::try_from(char::try_from(*x).unwrap().to_digit(10).unwrap_or(0)).unwrap_or(0)
+            })
             .collect();
         digits
     }
 
     pub fn einmaliger_inhalt(vec: &Vec<u8>) -> bool {
-        let set: HashSet<_> = vec.iter().cloned().collect();
+        let set: HashSet<_> = vec.iter().copied().collect();
         set.len() == vec.len()
     }
 

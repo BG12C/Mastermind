@@ -63,6 +63,7 @@ impl MastermindUI {
                     "Volltreffer!!! Sie haben die Zahl im {}. Versuch erraten.",
                     self.spielbrett.anzahl_versuche
                 );
+                break;
             }
         }
 

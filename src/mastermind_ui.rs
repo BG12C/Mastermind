@@ -44,7 +44,7 @@ impl MastermindUI {
                         continue;
                     }
                 } else {
-                    println!("{trimmed_input} ist zu groß oder klein!");
+                    println!("{trimmed_input} ist zu groß oder klein! Die Zahl muss zwischen 1000 & 9999 liegen!");
                     continue;
                 }
             } else {
